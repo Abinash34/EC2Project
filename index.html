@@ -3,47 +3,421 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The New Facelift</title>
+    <title>Dream Machines – The World of Cars</title>
+
+    <!-- Google Font (optional, but looks nice) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
     <style>
-        body {
+        * {
+            box-sizing: border-box;
             margin: 0;
-            height: 100vh;
-            font-family: Arial, sans-serif;
-            color: white;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            color: #ffffff;
+            min-height: 100vh;
+            background: radial-gradient(circle at top, #2b86c5 0%, #1a1a2e 40%, #000000 100%);
             display: flex;
             flex-direction: column;
-            justify-content: center;
+        }
+
+        header {
+            padding: 20px 40px;
+            display: flex;
             align-items: center;
-            text-align: center;
-
-            /* Cool gradient background */
-            background: linear-gradient(135deg, #090979, #00d4ff);
+            justify-content: space-between;
+            backdrop-filter: blur(8px);
+            background: rgba(0, 0, 0, 0.25);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        h1 {
-            font-size: 50px;
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .logo span {
+            color: #00f5d4;
+        }
+
+        nav a {
+            margin-left: 18px;
+            font-size: 0.95rem;
+            text-decoration: none;
+            color: #e0e0e0;
+            opacity: 0.8;
+            transition: opacity 0.2s ease, color 0.2s ease;
+        }
+
+        nav a:hover {
+            opacity: 1;
+            color: #00f5d4;
+        }
+
+        main {
+            flex: 1;
+            padding: 40px 24px 80px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+            gap: 32px;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(2.4rem, 3.4vw, 3.2rem);
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+
+        .hero-text h1 span {
+            color: #00f5d4;
+        }
+
+        .hero-text p {
+            font-size: 0.98rem;
+            max-width: 520px;
+            color: #e0e0e0;
+            opacity: 0.9;
+            margin-bottom: 22px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 10px;
+            border-radius: 999px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.8rem;
+            margin-bottom: 14px;
+        }
+
+        .hero-badge-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #00f5d4;
+            box-shadow: 0 0 8px #00f5d4;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .btn-primary,
+        .btn-ghost {
+            border-radius: 999px;
+            padding: 10px 18px;
+            font-size: 0.9rem;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #00f5d4, #00bbf9);
+            color: #020617;
+            font-weight: 600;
+            box-shadow: 0 8px 18px rgba(0, 245, 212, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 24px rgba(0, 245, 212, 0.55);
+        }
+
+        .btn-ghost {
+            color: #e5e7eb;
+            border-color: rgba(148, 163, 184, 0.7);
+            background: rgba(15, 23, 42, 0.6);
+        }
+
+        .btn-ghost:hover {
+            background: rgba(15, 23, 42, 0.9);
+            transform: translateY(-1px);
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+        }
+
+        .hero-card {
+            border-radius: 22px;
+            overflow: hidden;
+            background: radial-gradient(circle at top left, #00f5d4 0%, #0f172a 45%, #020617 100%);
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            position: relative;
+        }
+
+        .hero-card img {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        .hero-card-info {
+            position: absolute;
+            bottom: 14px;
+            left: 14px;
+            right: 14px;
+            padding: 10px 12px;
+            border-radius: 16px;
+            background: rgba(0, 0, 0, 0.6);
+            font-size: 0.78rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .hero-card-info span.label {
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 0.7rem;
+            opacity: 0.8;
+        }
+
+        .hero-card-info span.value {
+            font-weight: 600;
+        }
+
+        .pill {
+            padding: 4px 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.7);
+        }
+
+        .section-title {
+            font-size: 1.4rem;
             margin-bottom: 20px;
-            font-weight: bold;
         }
 
-        p {
-            font-size: 22px;
-            max-width: 700px;
+        .section-subtitle {
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+            color: #e5e7eb;
+            opacity: 0.85;
         }
 
-        img {
-            width: 350px;
-            height: auto;
+        .car-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 18px;
+        }
+
+        .car-card {
             border-radius: 18px;
-            margin-top: 30px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            overflow: hidden;
+            box-shadow: 0 10px 26px rgba(15, 23, 42, 0.7);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .car-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .car-content {
+            padding: 12px 14px 14px;
+        }
+
+        .car-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            opacity: 0.75;
+            margin-bottom: 6px;
+        }
+
+        .car-name {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .car-desc {
+            font-size: 0.82rem;
+            color: #cbd5f5;
+            opacity: 0.9;
+            margin-bottom: 8px;
+        }
+
+        .car-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: #9ca3af;
+        }
+
+        footer {
+            font-size: 0.75rem;
+            text-align: center;
+            padding: 14px 10px 18px;
+            color: #9ca3af;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 16px 18px;
+            }
+            .hero {
+                grid-template-columns: 1fr;
+            }
+            .hero-image-wrapper {
+                order: -1;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>✨ The New Facelift ✨</h1>
-    <p>Your journey has only just begun — and the future looks brighter than ever.</p>
+    <header>
+        <div class="logo">DREAM<span>CARD</span></div>
+        <nav>
+            <a href="#hero">Home</a>
+            <a href="#garage">Garage</a>
+            <a href="#about">Why Cars?</a>
+        </nav>
+    </header>
 
-    <img src="https://images.unsplash.com/photo-1511974035430-5de47d3b95da?q=80&w=1200" alt="New Life">
+    <main>
+        <!-- Hero -->
+        <section class="hero" id="hero">
+            <div class="hero-text">
+                <div class="hero-badge">
+                    <span class="hero-badge-dot"></span>
+                    <span>Live the fast lane life</span>
+                </div>
+                <h1>
+                    Welcome to the <span>new era</span> of cars.
+                </h1>
+                <p>
+                    From hypercars that break records to daily drivers that feel like home —
+                    this is your front-row seat to the machines that move the world.
+                </p>
+                <div class="hero-actions">
+                    <button class="btn-primary">Explore the Garage</button>
+                    <button class="btn-ghost">Build Your Dream Spec</button>
+                </div>
+            </div>
+
+            <div class="hero-image-wrapper">
+                <div class="hero-card">
+                    <img src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?q=80&w=1200" alt="Sports car at night">
+                    <div class="hero-card-info">
+                        <div>
+                            <span class="label">Featured</span><br>
+                            <span class="value">Midnight GT-R Build</span>
+                        </div>
+                        <div class="pill">
+                            0–100 km/h in 2.9s
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Garage -->
+        <section id="garage">
+            <h2 class="section-title">Choose your kind of crazy</h2>
+            <p class="section-subtitle">
+                Supercars, JDM legends, electric rockets, and classy cruisers — there’s a car for every mood.
+            </p>
+
+            <div class="car-grid">
+                <article class="car-card">
+                    <img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?q=80&w=1200" alt="Supercar">
+                    <div class="car-content">
+                        <div class="car-tag">Supercar</div>
+                        <div class="car-name">V12 Road Rocket</div>
+                        <p class="car-desc">
+                            Raw power, insane noise, and aerodynamics that slice through the air like a blade.
+                        </p>
+                        <div class="car-meta">
+                            <span>Top speed: 340 km/h</span>
+                            <span>Horsepower: 720 HP</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="car-card">
+                    <img src="https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?q=80&w=1200" alt="JDM car">
+                    <div class="car-content">
+                        <div class="car-tag">JDM Legend</div>
+                        <div class="car-name">Street Samurai</div>
+                        <p class="car-desc">
+                            Tuned for late-night highway pulls and tight corners. Style, soul, and turbo spool.
+                        </p>
+                        <div class="car-meta">
+                            <span>Drivetrain: RWD</span>
+                            <span>Boost: Twin-turbo</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="car-card">
+                    <img src="https://images.unsplash.com/photo-1542362567-b07e54358753?q=80&w=1200" alt="Electric car">
+                    <div class="car-content">
+                        <div class="car-tag">Electric</div>
+                        <div class="car-name">Silent Thunder</div>
+                        <p class="car-desc">
+                            Instant torque, zero emissions, and a cabin that feels like the future already arrived.
+                        </p>
+                        <div class="car-meta">
+                            <span>Range: 520 km</span>
+                            <span>0–100: 3.1 s</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="car-card">
+                    <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?q=80&w=1200" alt="Classic car">
+                    <div class="car-content">
+                        <div class="car-tag">Classic</div>
+                        <div class="car-name">Timeless Cruiser</div>
+                        <p class="car-desc">
+                            For Sunday drives, old songs, and the kind of attention money can’t easily buy.
+                        </p>
+                        <div class="car-meta">
+                            <span>Year: 1972</span>
+                            <span>Transmission: Manual</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- About -->
+        <section id="about" style="margin-top: 40px;">
+            <h2 class="section-title">Why cars feel like more than machines</h2>
+            <p class="section-subtitle">
+                For some people, a car is just a way to move from point A to B. For others, it’s a story,
+                an identity, and a tiny piece of freedom with four wheels and a key.
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        Built in the cloud. Fueled by octane, electrons, and big dreams.
+    </footer>
 </body>
 </html>
